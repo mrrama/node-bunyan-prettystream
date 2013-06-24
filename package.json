@@ -1,0 +1,28 @@
+{
+  "name": "bunyan-prettystream",
+  "version": "0.1.0",
+  "description": "A stream implementation of the bunyan cli tool's pretty printing capabilities",
+  "author": "Amar Suhail <amar.suhail@gmail.com>",
+  "main": "./lib/prettystream.js",
+
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mrrama/node-bunyan-prettystream.git"
+  },
+  "engines": ["node >=0.6.0"],
+  "keywords": ["log", "logging", "console", "bunyan", "development", "stream"],
+
+  "devDependencies": {
+    "mocha": "1.11.0",
+    "blanket" : "1.1.5",
+    "mocha-lcov-reporter" : "0.0.1",
+    "coveralls": "2.0.13",
+    "travis-cov": "0.2.4",
+    "should": "1.2.2"
+  },
+
+  "scripts": {
+    "test": "make test",
+    "travis-cov": { "threshold": 70 }
+  }
+}
