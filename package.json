@@ -1,6 +1,6 @@
 {
   "name": "bunyan-prettystream",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A stream implementation of the bunyan cli tool's pretty printing capabilities",
   "author": "Amar Suhail <amar.suhail@gmail.com>",
   "main": "./lib/prettystream.js",
@@ -9,7 +9,7 @@
     "type": "git",
     "url": "git://github.com/mrrama/node-bunyan-prettystream.git"
   },
-  "engines": ["node >=0.6.0"],
+  "engines": ["node >=0.8.0"],
   "keywords": ["log", "logging", "console", "bunyan", "development", "stream"],
 
   "devDependencies": {
