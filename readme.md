@@ -1,3 +1,6 @@
+  [![Build Status](https://secure.travis-ci.org/mrrrama/node-bunyan-prettystream.png?branch=master)](http://travis-ci.org/mrrama/node-bunyan-prettystream)
+  [![Coverage Status](https://coveralls.io/repos/mrrama/node-bunyan-prettystream/badge.png?branch=master)](https://coveralls.io/r/mrrama/node-bunyan-prettystream?branch=master)
+
 bunyan-prettystream is a stream based implementation of the [Bunyan][bunyan] CLI tool's pretty printing capabilities. It allows
 apps using bunyan to log directly to the console or file in human readable format instead of as JSON without having to
 run or pipe into the bunyan tool. This is useful for working with IDEs which do not have the ability to pipe console
