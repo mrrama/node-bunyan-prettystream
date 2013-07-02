@@ -69,7 +69,7 @@ describe('A PrettyStream', function(){
   it('should pretty print colored log statments', function(){
     var prettyStream = new PrettyStream({useColor: true});
     var result = prettyStream.formatRecord(simpleRecord);
-    result.should.equal('[2012-02-08T22:56:52.856Z] \u001b[36m INFO\u001b[39m: myservice/123 on example.com: \u001b[36mMy message\u001b[39m\n');
+    result.should.equal('[\u001b[37m2012-02-08T22:56:52.856Z\u001b[39m] \u001b[36m INFO\u001b[39m: myservice/123 on example.com: \u001b[36mMy message\u001b[39m\n');
   });
 
   it('should pretty print simple request log statments', function(){
