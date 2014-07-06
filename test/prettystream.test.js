@@ -61,6 +61,7 @@ var undefinedFields = {
   v:0};
 var simpleReqRecord = {"name":"amon-master","hostname":"9724a190-27b6-4fd8-830b-a574f839c67d","pid":12859,"route":"HeadAgentProbes","req_id":"cce79d15-ffc2-487c-a4e4-e940bdaac31e","level":20,"contentMD5":"11FxOYiYfpMxmANj4kGJzg==","msg":"headAgentProbes respond","time":"2012-08-08T10:25:47.636Z","v":0};
 var detailedReqResRecord = {"name":"amon-master","hostname":"9724a190-27b6-4fd8-830b-a574f839c67d","pid":12859,"audit":true,"level":30,"remoteAddress":"10.2.207.2","remotePort":50394,"req_id":"cce79d15-ffc2-487c-a4e4-e940bdaac31e","req":{"method":"HEAD","url":"/agentprobes?agent=ccf92af9-0b24-46b6-ab60-65095fdd3037","headers":{"accept":"application/json","content-type":"application/json","host":"10.2.207.16","connection":"keep-alive"},"httpVersion":"1.1","trailers":{},"version":"*"},"res":{"statusCode":200,"headers":{"content-md5":"11FxOYiYfpMxmANj4kGJzg==","access-control-allow-origin":"*","access-control-allow-headers":"Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version","access-control-allow-methods":"HEAD","access-control-expose-headers":"X-Api-Version, X-Request-Id, X-Response-Time","connection":"Keep-Alive","date":"Wed, 08 Aug 2012 10:25:47 GMT","server":"Amon Master/1.0.0","x-request-id":"cce79d15-ffc2-487c-a4e4-e940bdaac31e","x-response-time":3},"trailer":false},"route":{"name":"HeadAgentProbes","version":false},"latency":3,"secure":false,"_audit":true,"msg":"HeadAgentProbes handled: 200","time":"2012-08-08T10:25:47.637Z","v":0};
+var detailedReqResRecordWithHeaderObject = {"name":"amon-master","hostname":"9724a190-27b6-4fd8-830b-a574f839c67d","pid":12859,"audit":true,"level":30,"remoteAddress":"10.2.207.2","remotePort":50394,"req_id":"cce79d15-ffc2-487c-a4e4-e940bdaac31e","req":{"method":"HEAD","url":"/agentprobes?agent=ccf92af9-0b24-46b6-ab60-65095fdd3037","headers":{"accept":"application/json","content-type":"application/json","host":"10.2.207.16","connection":"keep-alive"},"httpVersion":"1.1","trailers":{},"version":"*"},"res":{"statusCode":200,"header":{"content-md5":"11FxOYiYfpMxmANj4kGJzg==","access-control-allow-origin":"*","access-control-allow-headers":"Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version","access-control-allow-methods":"HEAD","access-control-expose-headers":"X-Api-Version, X-Request-Id, X-Response-Time","connection":"Keep-Alive","date":"Wed, 08 Aug 2012 10:25:47 GMT","server":"Amon Master/1.0.0","x-request-id":"cce79d15-ffc2-487c-a4e4-e940bdaac31e","x-response-time":3},"trailer":false},"route":{"name":"HeadAgentProbes","version":false},"latency":3,"secure":false,"_audit":true,"msg":"HeadAgentProbes handled: 200","time":"2012-08-08T10:25:47.637Z","v":0};
 
 describe('A PrettyStream', function(){
   it('should pretty print simple uncolored log statments', function(){
@@ -133,6 +134,39 @@ describe('A PrettyStream', function(){
     prettyStream.write(simpleRecord);
     prettyStream.end();
   });
+
+  // Some past crashes from issues.
+
+  it('should pretty print detailed request and response log statments', function(){
+    var prettyStream = new PrettyStream({useColor: false});
+    var result = prettyStream.formatRecord(detailedReqResRecordWithHeaderObject);
+    var expected = [ '[2012-08-08T10:25:47.637Z]  INFO: amon-master/12859 on 9724a190-27b6-4fd8-830b-a574f839c67d: HeadAgentProbes handled: 200 (req.version=*, audit=true, remoteAddress=10.2.207.2, remotePort=50394, req_id=cce79d15-ffc2-487c-a4e4-e940bdaac31e, latency=3, secure=false, _audit=true)',
+                     '    HEAD /agentprobes?agent=ccf92af9-0b24-46b6-ab60-65095fdd3037 HTTP/1.1',
+                     '    accept: application/json',
+                     '    content-type: application/json',
+                     '    host: 10.2.207.16',
+                     '    connection: keep-alive',
+                     '    --',
+                     '    HTTP/1.1 200 OK',
+                     '    content-md5: 11FxOYiYfpMxmANj4kGJzg==',
+                     '    access-control-allow-origin: *',
+                     '    access-control-allow-headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version',
+                     '    access-control-allow-methods: HEAD',
+                     '    access-control-expose-headers: X-Api-Version, X-Request-Id, X-Response-Time',
+                     '    connection: Keep-Alive',
+                     '    date: Wed, 08 Aug 2012 10:25:47 GMT',
+                     '    server: Amon Master/1.0.0',
+                     '    x-request-id: cce79d15-ffc2-487c-a4e4-e940bdaac31e',
+                     '    x-response-time: 3',
+                     '    --',
+                     '    route: {',
+                     '      "name": "HeadAgentProbes",',
+                     '      "version": false',
+                     '    }'].join('\n') + "\n";
+    result.should.equal(expected);
+  });
+
+
 });
 
 
