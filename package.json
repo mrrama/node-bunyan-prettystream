@@ -1,6 +1,6 @@
 {
   "name": "bunyan-prettystream",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A stream implementation of the bunyan cli tool's pretty printing capabilities",
   "author": "Amar Suhail <amar.suhail@gmail.com>",
   "main": "./lib/prettystream.js",
