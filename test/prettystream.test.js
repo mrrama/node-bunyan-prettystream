@@ -87,6 +87,28 @@ describe('A PrettyStream', function(){
     result.should.equal('[\u001b[37m2012-02-08T22:56:52.856Z\u001b[39m] \u001b[36m INFO\u001b[39m: myservice/123 on example.com: \u001b[36mMy message\u001b[39m\n');
   });
 
+  it('should pretty print colored log statments if output is a TTY', function(done){
+    var prettyStream = new PrettyStream({useColor: 'auto'});
+    var ts = new TestStream(function(result) {
+      result.should.equal('[\u001b[37m2012-02-08T22:56:52.856Z\u001b[39m] \u001b[36m INFO\u001b[39m: myservice/123 on example.com: \u001b[36mMy message\u001b[39m\n');
+    }, done);
+    ts.isTTY = true;
+    prettyStream.pipe(ts);
+    prettyStream.write(simpleRecord);
+    prettyStream.end();
+  });
+
+  it('should pretty print uncolored log statments if output is not a TTY', function(done){
+    var prettyStream = new PrettyStream({useColor: 'auto'});
+    var ts = new TestStream(function(result) {
+      result.should.equal('[2012-02-08T22:56:52.856Z]  INFO: myservice/123 on example.com: My message\n');
+    }, done);
+    ts.isTTY = false;
+    prettyStream.pipe(ts);
+    prettyStream.write(simpleRecord);
+    prettyStream.end();
+  });
+
   it('should pretty print simple request log statments', function(){
     var prettyStream = new PrettyStream({useColor: false});
     var result = prettyStream.formatRecord(simpleReqRecord);
