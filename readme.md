@@ -27,6 +27,30 @@ This library is only really meant for development and should not be used on prod
   });
   ```
 
+# Options
+
+  ```javascript
+  var prettyStdOut = new PrettyStream({ 
+      mode: 'long', //short, long, dev
+      useColor: true,
+      UTC: true,
+      timeFormat: moment.defaultFormat // "2014-11-10T23:35:25+00:00" (ISO 8601)
+  });
+  ```
+  
+`UTC` defaults to `true`, while setting `false` will use the machine's local time zone.
+
+`timeFormat` uses [moment.js conventions](http://momentjs.com/docs/#/displaying/format/) and defaults to ISO 8601 format.
+
+Custom time formatting example:
+
+  ```javascript
+  var prettyStdOut = new PrettyStream({ 
+      UTC: false,
+      timeFormat: 'YYYY-MM-DD HH:mm:ssZZ' // "2014-11-10 14:47:32-0800"
+  });
+  ```
+
 # Tests
 
 Running unit tests requires `mocha` installed.
