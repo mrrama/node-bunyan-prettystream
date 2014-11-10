@@ -9,13 +9,17 @@
     "type": "git",
     "url": "git://github.com/mrrama/node-bunyan-prettystream.git"
   },
-  "engines": ["node >=0.8.0"],
+  "engines": { "node": ">=0.8.0" },
   "keywords": ["log", "logging", "console", "bunyan", "development", "stream"],
+
+  "dependencies": {
+    "moment": "~2.8"
+  },
 
   "devDependencies": {
     "mocha": "1.11.0",
-    "blanket" : "1.1.5",
-    "mocha-lcov-reporter" : "0.0.1",
+    "blanket": "1.1.5",
+    "mocha-lcov-reporter": "0.0.1",
     "coveralls": "2.0.13",
     "travis-cov": "0.2.4",
     "should": "1.2.2"
