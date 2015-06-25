@@ -12,6 +12,9 @@
   "engines": ["node >=0.8.0"],
   "keywords": ["log", "logging", "console", "bunyan", "development", "stream"],
 
+  "dependencies": {
+    "json-stringify-safe": "^5.0.1"
+  },
   "devDependencies": {
     "mocha": "1.11.0",
     "blanket" : "1.1.5",

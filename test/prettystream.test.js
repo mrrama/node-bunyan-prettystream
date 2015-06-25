@@ -133,6 +133,32 @@ describe('A PrettyStream', function(){
     prettyStream.write(simpleRecord);
     prettyStream.end();
   });
+
+  it('should work on circular structures', function() {
+    var prettyStream = new PrettyStream({useColor: false});
+    var obj = {name: "Alice", child: {name: "Bob"}};
+    //obj.child.self = obj.child;
+    var circularRecord = {
+      name: "myservice",
+      pid: 123,
+      hostname: "example.com",
+      level: 30,
+      msg: "Test",
+      time: "2012-02-08T22:56:52.856Z",
+      v: 0,
+      child: {name: "Bob"}
+    };
+    circularRecord.child.self = circularRecord.child;
+
+    var result = prettyStream.formatRecord(circularRecord);
+    var expected = [
+      '[2012-02-08T22:56:52.856Z]  INFO: myservice/123 on example.com: Test',
+      '    child: {',
+      '      "name": "Bob",',
+      '      "self": "[Circular ~]"',
+      '    }'].join('\n') + "\n";
+    result.should.equal(expected);
+  });
 });
 
 
