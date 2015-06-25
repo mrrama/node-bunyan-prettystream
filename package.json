@@ -24,5 +24,6 @@
   "scripts": {
     "test": "make test",
     "travis-cov": { "threshold": 70 }
-  }
+  },
+  "license": "MIT"
 }
